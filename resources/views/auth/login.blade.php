@@ -3,7 +3,7 @@
 @section('content')
 <div class="login-box">
   <div class="login-logo">
-    <a href="/">{{ config('app.name') }}</a>
+    <a href="/"><img src="{{ asset("images/kejati-logo.png") }}" width="200px"></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

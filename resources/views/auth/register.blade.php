@@ -19,8 +19,8 @@
 
 @section('content')
 <div class="register-box">
-  <div class="register-logo">
-    <a href="/">{{ config('app.name') }}</a>
+  <div class="login-logo">
+    <a href="/"><img src="{{ asset("images/kejati-logo.png") }}" width="200px"></a>
   </div>
 
   <div class="register-box-body">

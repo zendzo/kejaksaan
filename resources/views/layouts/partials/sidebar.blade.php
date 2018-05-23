@@ -33,6 +33,7 @@
       <!-- if user is admin show menu -->
       @if(Auth::user()->role_id === 1)
         @include('admin.menu_admin')
+        @include('admin.menu_master_data')
       @endif
 
       <!-- user menu -->

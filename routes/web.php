@@ -28,6 +28,8 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'admin'], function(
 
 	Route::resource('role','RoleController');
 
+	Route::resource('pegawai','PegawaiController');
+
 });
 
 Route::group(['prefix'=>'user','as'=>'user.'], function(){
