@@ -1,5 +1,22 @@
 @extends('layouts.master')
 
+@section('cssPlugins')
+<!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/datepicker/datepicker3.css') }}">
+@endsection
+
+@section('jsPlugins')
+
+<!-- bootstrap datepicker -->
+<script src="{{ asset('AdminLTE/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+
+<script>
+  $('#datepicker').datepicker({
+    format: 'dd/mm/yyyy'
+  });
+</script>
+@endsection
+
 @section('content')
 <div class="row">
   <div class="col-md-12">
@@ -56,7 +73,39 @@
                 </div>
               </div>
 
-              <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+              <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }} ">
+                <label for="email" class="col-sm-2 control-label">Tgl. Lahir</label>
+
+                <div class="col-sm-10">
+                  <input id="datepicker" name="birth_date" type="text" class="form-control" value="{{ $user->birth_date }}" placeholder="Tanggal Lahir">
+                  <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+                  @if ($errors->has('birth_date'))
+                      <span class="help-block">
+                          <strong>{{ $errors->first('birth_date') }}</strong>
+                      </span>
+                  @endif
+                </div>
+              </div>
+
+              <div class="form-group{{ $errors->has('gender_id') ? ' has-error' : '' }}">
+                <label for="email" class="col-sm-2 control-label">Jenis Kelamin</label>
+                  
+                  <div class="col-sm-10">
+                    <select class="form-control" name="gender_id" id="gender_id">
+                      <option value="1">Laki-Laki</option>  
+                      <option value="2">Perempuan</option>
+                    </select>
+
+                    @if ($errors->has('gender_id'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('gender_id') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+              </div>
+
+              <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                 <label for="email" class="col-sm-2 control-label">Phone</label>
 
                 <div class="col-sm-10">

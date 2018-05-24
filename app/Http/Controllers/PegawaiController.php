@@ -115,6 +115,15 @@ class PegawaiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $delete = $user->delete();
+
+        if ($delete) {
+            return redirect()->back()
+                        ->with('message',"Data $user->first_name Telah Dihapus!")
+                        ->with('status','success')
+                        ->with('type','success');
+        }
     }
 }
