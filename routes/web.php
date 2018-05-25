@@ -30,6 +30,18 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'admin'], function(
 
 	Route::resource('pegawai','PegawaiController');
 
+	Route::resource('pengaduan','PengaduanController');
+
+	Route::get('pengaduan-disetujui',[
+		'as'	=>	'pengaduan.disetujui',
+		'uses'	=>	'PengaduanController@approved'
+	]);
+
+	Route::get('pengaduan-ditolak',[
+		'as'	=>	'pengaduan.ditolak',
+		'uses'	=>	'PengaduanController@rejected'
+	]);
+
 });
 
 Route::group(['prefix'=>'user','as'=>'user.'], function(){

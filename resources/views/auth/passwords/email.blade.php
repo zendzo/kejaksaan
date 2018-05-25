@@ -3,7 +3,7 @@
 @section('content')
 <div class="lockscreen-wrapper">
   <div class="lockscreen-logo">
-    <a href="/"><b>{{ env('APP_NAME') }}</b></a>
+    <a href="/"><a href="/"><img src="{{ asset("images/kejati-logo.png") }}" width="200px"></a></b></a>
   </div>
 
     <div class="help-block text-center">
