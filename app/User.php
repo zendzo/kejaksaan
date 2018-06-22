@@ -42,6 +42,11 @@ class User extends Authenticatable
         $this->attributes['birth_date'] = Carbon::createFromFormat('d/m/Y',$value)->toDateString();
     }
 
+    public function getBirthDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);

@@ -17,7 +17,7 @@ class PengaduanController extends Controller
     {
         $page_title = "Data Pengaduan Masuk";
 
-        $data = Pengaduan::all();
+        $data = Pengaduan::all()->sortByDesc('id');
 
         return view('pengaduan.index',compact(['data','page_title']));
     }
@@ -47,7 +47,9 @@ class PengaduanController extends Controller
      */
     public function create()
     {
-        //
+        $page_title = "Input Data Pengaduan";
+
+        return view('pengaduan.create',compact(['page_title']));
     }
 
     /**
@@ -58,7 +60,16 @@ class PengaduanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $pengaduan = new Pengaduan;
+
+        $pengaduan->create($input);
+
+        return redirect('/admin/pengaduan')
+            ->with('message', 'Data Pengaduan Telah Tersimpan!')
+            ->with('status','success')
+            ->with('type','success');
     }
 
     /**
@@ -69,7 +80,13 @@ class PengaduanController extends Controller
      */
     public function show($id)
     {
-        //
+        $pengaduan = Pengaduan::findOrFail($id);
+
+        $page_title = $pengaduan->title_pengaduan;
+
+        return $pengaduan;
+
+        // return view('profile.show',compact(['pengaduan','page_title']))
     }
 
     /**
@@ -80,7 +97,18 @@ class PengaduanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pengaduan = Pengaduan::findOrFail($id);
+
+        $page_title = "Edit Pengaduan : " .$pengaduan->title_pengaduan;
+
+        if (empty($pengaduan)) {
+            return redirect()->back()
+                    ->with('message', 'Data Tidak Ditemukan!')
+                    ->with('status','error')
+                    ->with('type','error');
+        }
+
+        return view('pengaduan.edit',compact(['page_title','pengaduan']));
     }
 
     /**
@@ -92,7 +120,22 @@ class PengaduanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        $pengaduan = Pengaduan::findOrFail($id);
+
+        try {
+            $pengaduan->update($input);
+            return redirect()->back()
+                            ->with('message','Data Berhasil Diupdate!')
+                            ->with('status','success')
+                            ->with('type','success');
+        } catch (Exception $e) {
+            return redirect()->back()
+                            ->with('message',$e->getMessage())
+                            ->with('status','Something Wrong!')
+                            ->with('type','error');
+        }
     }
 
     /**

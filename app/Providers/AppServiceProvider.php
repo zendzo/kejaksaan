@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Role;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if (! $this->app->runningInConsole()) {
+
+            View::share('roles', Role::where('id','>',1)->get());
+        }
     }
 
     /**

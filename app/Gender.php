@@ -10,4 +10,9 @@ class Gender extends Model
     {
     	return $this->hasOne('App\User'.'gender_id');
     }
+
+    public function pengaduan()
+    {
+    	return $this->hasOne('App\Pengaduan'.'gender_id');
+    }
 }

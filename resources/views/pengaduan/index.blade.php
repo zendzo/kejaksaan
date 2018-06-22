@@ -9,7 +9,9 @@
 <!-- page script -->
 <script>
     $(document).ready( function () {
-	    var table = $('#example1').DataTable();
+	    var table = $('#example1').DataTable({
+	    	 "order": [[ 0, "desc" ]]
+	    });
 	 
 	    table.on( 'draw', function () {
 	        var body = $( table.table().body() );

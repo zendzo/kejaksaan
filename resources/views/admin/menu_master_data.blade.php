@@ -13,6 +13,9 @@
 				<i class="fa fa-book"></i>&nbsp;Data Pengaduan<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 			</a>
 		<ul class="treeview-menu {{ active(['admin.pengaduan.*']) }}">
+			<li class="{{ active('admin.pengaduan.create') }}">
+				<a href="{{ route('admin.pengaduan.create') }}"><i class="fa  fa-clipboard"></i>Input Pengaduan</a>
+			</li>
 			<li class="{{ active('admin.pengaduan.index') }}">
 				<a href="{{ route('admin.pengaduan.index') }}"><i class="fa fa-arrow-right"></i>Masuk</a>
 			</li>

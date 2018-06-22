@@ -86,6 +86,20 @@
           @endif
       </div>
 
+      <div class="form-group{{ $errors->has('role_id') ? ' has-error' : '' }}">          
+            <select class="form-control" name="role_id" id="gender_id">
+              @foreach ($roles as $role)
+                <option value="{{ $role->id }}">{{ $role->name }}</option>
+              @endforeach
+            </select>
+
+            @if ($errors->has('gender_id'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('gender_id') }}</strong>
+                </span>
+            @endif
+      </div>
+
       <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
         <input id="phone" name="phone" class="form-control" value="{{ old('phone') }}" placeholder="Phone">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

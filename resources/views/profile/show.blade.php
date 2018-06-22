@@ -1,5 +1,22 @@
 @extends('layouts.master')
 
+@section('cssPlugins')
+<!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/datepicker/datepicker3.css') }}">
+@endsection
+
+@section('jsPlugins')
+
+<!-- bootstrap datepicker -->
+<script src="{{ asset('AdminLTE/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+
+<script>
+  $('#datepicker').datepicker({
+    format: 'dd/mm/yyyy'
+  });
+</script>
+@endsection
+
 @section('content')
     <!-- Main content -->
     <section class="content">
@@ -12,7 +29,7 @@
           <!-- /.box -->
 
           <!-- About Me Box -->
-          @include('profile.user_about')
+          {{-- @include('profile.user_about') --}}
 
           <!-- /.box -->
         </div>
@@ -22,7 +39,6 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
               <li><a href="#settings" data-toggle="tab">Settings</a></li>
-              <li><a href="#store" data-toggle="tab">Data Toko</a></li>
             </ul>
             <div class="tab-content">
 
@@ -31,9 +47,6 @@
 
             <!-- user setting -->
             @include('profile.user_setting')
-
-            <!-- user profile -->
-            {{-- @include('profile.user_store') --}}
 
             </div>
             <!-- /.tab-content -->

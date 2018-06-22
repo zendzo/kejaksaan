@@ -105,6 +105,24 @@
                   </div>
               </div>
 
+              <div class="form-group{{ $errors->has('role_id') ? ' has-error' : '' }}">
+                <label for="email" class="col-sm-2 control-label">Jenis User</label>
+                  
+                  <div class="col-sm-10">
+                    <select class="form-control" name="role_id" id="gender_id">
+                      @foreach ($roles as $role)
+                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                      @endforeach
+                    </select>
+
+                    @if ($errors->has('gender_id'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('gender_id') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+              </div>
+
               <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                 <label for="email" class="col-sm-2 control-label">Phone</label>
 
@@ -123,7 +141,7 @@
                 <label for="password" class="col-sm-2 control-label">password</label>
 
                 <div class="col-sm-10">
-                 <input id="password" name="password" type="password" class="form-control" placeholder="password">
+                 <input id="password" name="password" type="password" class="form-control" placeholder="password" required="">
 
                   @if ($errors->has('password'))
                       <span class="help-block">
@@ -137,7 +155,7 @@
                 <label for="password-confirmation" class="col-sm-2 control-label">password</label>
 
                 <div class="col-sm-10">
-                 <input id="password-confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Retype password">
+                 <input id="password-confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Retype password" required="">
 
                 </div>
               </div>

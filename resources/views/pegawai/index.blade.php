@@ -16,6 +16,8 @@
                 <tr>
                   <th>Nama Depan</th>
                   <th>Nama Belakang</th>
+                  <th>Jenis Kelamin</th>
+                  <th>Jenis User</th>
                   <th>email</th>
                   <th>phone</th>
                   <th>Action</th>
@@ -27,6 +29,8 @@
                      <tr>
                         <td><a href="{{ url('/user/profile',$user->id) }}">{{ $user->first_name }}</a></td>
                         <td>{{ $user->last_name }}</td>
+                        <td>{{ $user->gender->gender }}</td>
+                        <td>{{ $user->role->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
                         <td width="10%" class="text-center">
