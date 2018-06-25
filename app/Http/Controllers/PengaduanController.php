@@ -84,9 +84,7 @@ class PengaduanController extends Controller
 
         $page_title = $pengaduan->title_pengaduan;
 
-        return $pengaduan;
-
-        // return view('profile.show',compact(['pengaduan','page_title']))
+        return view('pengaduan.show',compact(['pengaduan','page_title']));
     }
 
     /**

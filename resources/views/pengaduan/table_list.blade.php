@@ -46,23 +46,32 @@
               <button class="btn btn-xs btn-danger">ditolak</button>
             @endif
           </td>
-            <td width="10%" class="text-center">
-              <a class="btn btn-xs btn-info" href="{{ route('admin.pengaduan.show',$pengaduan->id) }}">
-                <span class="fa fa-info fa-fw"></span>
-              </a>
-              <a class="btn btn-xs btn-primary" href="{{ route('admin.pengaduan.edit',$pengaduan->id) }}">
-                <span class="fa fa-pencil fa-fw"></span>
-              </a>
-              @if(Auth::user()->role_id === 1)
-                <form method="POST" action="{{ route('admin.pengaduan.destroy',$pengaduan->id) }}" accept-charset="UTF-8" style="display:inline">
-                {{ method_field('DELETE') }}
-                {{ csrf_field() }}
-                <button type="submit" class="btn btn-xs btn-danger">
-                  <span class="fa fa-close fa-fw"></span>
-                </button>
-              </form>
-              @endif
-            </td>
+            @if(Auth::user()->role_id === 1 )
+                <td width="10%" class="text-center">
+                <a class="btn btn-xs btn-info" href="{{ route('admin.pengaduan.show',$pengaduan->id) }}">
+                  <span class="fa fa-info fa-fw"></span>
+                </a>
+                <a class="btn btn-xs btn-primary" href="{{ route('admin.pengaduan.edit',$pengaduan->id) }}">
+                  <span class="fa fa-pencil fa-fw"></span>
+                </a>
+                @if(Auth::user()->role_id === 1)
+                  <form method="POST" action="{{ route('admin.pengaduan.destroy',$pengaduan->id) }}" accept-charset="UTF-8" style="display:inline">
+                  {{ method_field('DELETE') }}
+                  {{ csrf_field() }}
+                  <button type="submit" class="btn btn-xs btn-danger">
+                    <span class="fa fa-close fa-fw"></span>
+                  </button>
+                </form>
+                @endif
+            @endif
+
+            @if(Auth::user()->role_id === 2 )
+                <td width="10%" class="text-center">
+                  <a class="btn btn-xs btn-info" href="{{ route('user.pengaduan.show',$pengaduan->id) }}">
+                    <span class="fa fa-info fa-fw"></span>
+                  </a>
+                </td>
+            @endif
          </tr>
         @endforeach
       </tbody>

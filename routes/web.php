@@ -37,4 +37,16 @@ Route::group(['prefix'=>'user','as'=>'user.'], function(){
 
 	Route::resource('/profile','UserProfileController',['only' => ['show','update']]);
 
+	Route::resource('pengaduan','PengaduanController',['only' => ['index','show']]);
+
+	Route::get('pengaduan-disetujui',[
+		'as'	=>	'pengaduan.disetujui',
+		'uses'	=>	'PengaduanController@approved'
+	]);
+
+	Route::get('pengaduan-ditolak',[
+		'as'	=>	'pengaduan.ditolak',
+		'uses'	=>	'PengaduanController@rejected'
+	]);
+
 });

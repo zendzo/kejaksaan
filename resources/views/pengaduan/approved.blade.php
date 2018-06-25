@@ -32,7 +32,7 @@
 <link rel="stylesheet" href=".{{ asset('AdminLTE/plugins/datatables/dataTables.bootstrap.css') }}">
 @endsection
 
-@section('content'))
+@section('content')
 
   @include('pengaduan.table_list')
   

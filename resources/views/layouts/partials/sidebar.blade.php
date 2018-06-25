@@ -37,8 +37,8 @@
       @endif
 
       <!-- user menu -->
-      @if(Auth::user()->role_id != 1)
-        {{-- @include('user.menu_data_toko') --}}
+      @if(Auth::user()->role_id === 2)
+        @include('user.menu_kajati')
       @endif
     </ul><!-- /.sidebar-menu -->
   </section>

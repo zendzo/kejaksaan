@@ -34,7 +34,7 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
                         <td width="10%" class="text-center">
-                          <a class="btn btn-xs btn-info" href="{{ route('admin.pegawai.show',$user->id) }}">
+                          <a class="btn btn-xs btn-info" href="{{ route('user.profile.show',$user->id) }}">
                             <span class="fa fa-info fa-fw"></span>
                           </a>
                           <a class="btn btn-xs btn-primary" href="{{ route('admin.pegawai.edit',$user->id) }}">
