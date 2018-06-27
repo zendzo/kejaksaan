@@ -12,10 +12,17 @@
     <section class="invoice">
       <!-- title row -->
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-2">
+          <img class="img img-responsive" src="{{ asset('images/kejati-logo.png') }}">
+        </div>
+        <div class="col-xs-8">
           <h2 class="page-header">
-             <img style="height: 50px;" src="{{ asset('images/kejati-logo.png') }}" alt="">
-             <small class="pull-right">Tanjungpinang : {{ $pengaduan->created_at->format('d-m-Y') }}</small>
+             <div class="text-center">
+               <h5 style="margin-bottom: 1px;"><b>RAHASIA</b></h5>
+               <h3 style="margin-top: 1px; margin-bottom: 1px;">KEJAKSAAN TINGGI KEPULAUAN RIAU</h3>
+              <h4 style="margin-top: 1px; margin-bottom: 1px;">Jl. Sei Timun No. 1 Senggarang  Telp/Fax. (0771) 313062</h4>
+              <h4 style="margin-top: 3px;">TANJUNGPINANG</h4>
+             </div>
           </h2>
         </div>
         <!-- /.col -->
@@ -23,6 +30,9 @@
       <!-- info row -->
       <div class="row invoice-info">
         <!-- /.col -->
+        <div class="col-sm-12 invoice-info">
+          <small class="pull-right">Tanjungpinang : {{ $pengaduan->created_at->format('d-m-Y') }}</small>
+        </div>
         <div class="col-sm-4 invoice-col">
         <b>No: TP/10/12/17</b><br>
           <br>
