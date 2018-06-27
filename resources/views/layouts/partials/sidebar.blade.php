@@ -36,9 +36,14 @@
         @include('admin.menu_master_data')
       @endif
 
-      <!-- user menu -->
+      <!-- kajati user menu -->
       @if(Auth::user()->role_id === 2)
         @include('user.menu_kajati')
+      @endif
+
+      <!-- kajati user menu -->
+      @if(Auth::user()->role_id === 3)
+        @include('user.menu_bidang_penyidik')
       @endif
     </ul><!-- /.sidebar-menu -->
   </section>

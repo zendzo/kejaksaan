@@ -65,7 +65,7 @@
                 @endif
             @endif
 
-            @if(Auth::user()->role_id === 2 )
+            @if(Auth::user()->role_id !== 1 )
                 <td width="10%" class="text-center">
                   <a class="btn btn-xs btn-info" href="{{ route('user.pengaduan.show',$pengaduan->id) }}">
                     <span class="fa fa-info fa-fw"></span>
