@@ -87,9 +87,9 @@
           <div class="col-xs-12">
             <button onclick="printPage()" href="#" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
             @if($pengaduan->status === 1)
-                <a href="{{ url('/', $pengaduan->id ) }}" class="btn btn-warning pull-right" style="margin-right: 5px;"><i class="fa fa-ban"></i> Tolak Permohonan
+                <a href="{{ url('/user/tolak-pengaduan', $pengaduan->id ) }}" class="btn btn-warning pull-right" style="margin-right: 5px;"><i class="fa fa-ban"></i> Tolak Permohonan
                 </a>
-                <a href="{{ url('/', $pengaduan->id ) }}" class="btn btn-success pull-right" style="margin-right: 5px;"><i class="fa fa-check"></i> Terima Permohonan
+                <a href="{{ url('/user/setujui-pengaduan', $pengaduan->id ) }}" class="btn btn-success pull-right" style="margin-right: 5px;"><i class="fa fa-check"></i> Terima Permohonan
                 </a>
             @endif
 
