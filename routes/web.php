@@ -49,4 +49,15 @@ Route::group(['prefix'=>'user','as'=>'user.'], function(){
 		'uses'	=>	'PengaduanController@rejected'
 	]);
 
+	Route::get('tolak-pengaduan/{pengaduanId}',[
+		'as'	=>	'tolak.pengaduan',
+		'uses'	=>	'PengaduanApprovalController@reject'
+	]);
+
+	Route::get('setujui-pengaduan/{pengaduanId}',[
+		'as'	=>	'setujui.pengaduan',
+		'uses'	=>	'PengaduanApprovalController@approve'
+	]);
+
+
 });
