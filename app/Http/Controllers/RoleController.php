@@ -72,7 +72,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        $page_title = "Edit Role ".$role->name;
+
+        return view('role.edit',compact('role','page_title'));
     }
 
     /**
@@ -84,7 +86,12 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $role->update($request->all());
+
+        return redirect()->route('admin.role.index')
+                        ->with('message', 'Data Telah Tersimpan!')
+                        ->with('status','success')
+                        ->with('type','success');
     }
 
     /**
