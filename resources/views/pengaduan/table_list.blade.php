@@ -34,7 +34,7 @@
           <td>{{ $pengaduan->email }}</td>
           <td>{{ $pengaduan->address }}</td>
           <td>{{ $pengaduan->title_pengaduan }}</td>
-          <td>{!! $pengaduan->content_pengaduan !!}</td>
+          <td>{!! str_limit($pengaduan->content_pengaduan,100) !!}</td>
           <td>
             @if ($pengaduan->status === 1)
               <button class="btn btn-xs btn-info">baru</button>
