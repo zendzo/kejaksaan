@@ -19,6 +19,7 @@ class Pengaduan extends Model
 		'title_pengaduan',
 		'content_pengaduan',
 		'status',
+		'attachment',
 	];
 
 

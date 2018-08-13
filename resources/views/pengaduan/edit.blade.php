@@ -37,7 +37,7 @@
       </div>
       <!-- /.box-header -->
       <!-- form start -->
-      <form class="form-horizontal"  action="{{ route('admin.pengaduan.update',$pengaduan->id) }}" method="POST">
+      <form class="form-horizontal"  action="{{ route('admin.pengaduan.update',$pengaduan->id) }}" enctype="multipart/form-data" method="POST">
       {{ csrf_field() }}
       {{ method_field('PATCH') }}
 
@@ -157,7 +157,30 @@
 	        <textarea name="content_pengaduan" class="textarea" placeholder="Detail Pengaduan" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
 	        	{{ $pengaduan->content_pengaduan }}
 	        </textarea>
-	    </div>
+      </div>
+      <div class="box-body form-horizontal">
+
+          <div class="form-group">
+  
+            <div class="col-sm-12">
+                <a class="btn btn-lg btn-info btn-block" target="_blank" data-toggle="tooltip" title="Download Lampiran : {{ $pengaduan->attachment }}" href="{{ asset($pengaduan->attachment) }}">
+                    <i class="fa fa-save"></i> Lihat Lampiran : {{ $pengaduan->title_pengaduan }}
+                </a>
+            </div>
+          </div>
+  
+        </div>
+      <div class="box-body form-horizontal">
+
+          <div class="form-group">
+            <label for="attachment" class="col-sm-2 control-label">Ubah File Lampiran</label>
+  
+            <div class="col-sm-10">
+               <input type="file" name="attachment" class="form-control" placeholder="Judul Pengaduan">
+            </div>
+          </div>
+  
+        </div>
 
 	    <!-- box footer -->
         <div class="box-footer form-horizontal">

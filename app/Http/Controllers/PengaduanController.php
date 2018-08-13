@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 use Carbon\Carbon;
 
 use App\Pengaduan;
@@ -143,20 +144,45 @@ class PengaduanController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-
+        
         $pengaduan = Pengaduan::findOrFail($id);
 
-        try {
-            $pengaduan->update($input);
+        if (!$request->has('attachment')) {
+            $pengaduan->update($request->except('attachment'));
+
             return redirect()->back()
                             ->with('message','Data Berhasil Diupdate!')
                             ->with('status','success')
                             ->with('type','success');
-        } catch (Exception $e) {
-            return redirect()->back()
-                            ->with('message',$e->getMessage())
-                            ->with('status','Something Wrong!')
-                            ->with('type','error');
+        }
+
+        if($request->hasFile('attachment')){
+            if ($request->file('attachment')->isValid()) {
+
+                $folderUpload = config('settings.folder_upload_location').Carbon::now(new \DateTimeZone('Asia/Jakarta'))
+                        ->toDateString()."-".$request['title_pengaduan']."/";
+
+                $fileName = md5(rand(0,2000)).'.'.$request->attachment->getClientOriginalExtension();
+
+                $request->attachment->move(public_path($folderUpload), $fileName);
+                $pengaduan->no_ktp = $input['no_ktp'];
+                $pengaduan->name   = $input['name'];
+                $pengaduan->gender_id  = $input['gender_id'];
+                $pengaduan->birth_date = $input['birth_date'];
+                $pengaduan->phone  = $input['phone'];
+                $pengaduan->email  = $input['email'];
+                $pengaduan->address= $input['address'];
+                $pengaduan->title_pengaduan= $input['title_pengaduan'];
+                $pengaduan->content_pengaduan  = $input['content_pengaduan'];
+                $pengaduan->attachment = $folderUpload.$fileName;
+                $pengaduan->save();
+
+                return redirect()->back()
+                            ->with('message','Data Berhasil Diupdate!')
+                            ->with('status','success')
+                            ->with('type','success');
+            }
+
         }
     }
 
