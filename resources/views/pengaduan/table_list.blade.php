@@ -33,17 +33,25 @@
           <td>{{ $pengaduan->phone }}</td>
           <td>{{ $pengaduan->email }}</td>
           <td>{{ $pengaduan->address }}</td>
-          <td>{{ $pengaduan->title_pengaduan }}</td>
+          <td>
+            @if($pengaduan->attachment)
+          <a target="_blank" data-toggle="tooltip" title="Download Lampiran : {{ $pengaduan->attachment }}" href="{{ asset($pengaduan->attachment) }}">
+                {{ $pengaduan->title_pengaduan }}
+              </a>
+            @else
+              {{ $pengaduan->title_pengaduan }}
+            @endif
+          </td>
           <td>{!! str_limit($pengaduan->content_pengaduan,100) !!}</td>
           <td>
             @if ($pengaduan->status === 1)
-              <button class="btn btn-xs btn-info">baru</button>
+              <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#pengaduanModal">baru</button>
             @endif
             @if ($pengaduan->status === 2)
-              <button class="btn btn-xs btn-success">disetujui</button>
+              <button class="btn btn-xs btn-success" data-toggle="modal" data-target="#pengaduanModal">disetujui</button>
             @endif
             @if ($pengaduan->status === 3)
-              <button class="btn btn-xs btn-danger">ditolak</button>
+              <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#pengaduanModal">ditolak</button>
             @endif
           </td>
             @if(Auth::user()->role_id === 1 )
@@ -80,3 +88,8 @@
   <!-- /.box-body -->
 </div>
 <!-- /.box -->
+
+<!-- Modal -->
+<div class="modal fade" id="pengaduanModal" tabindex="-1" role="dialog" aria-labelledby="pengaduanModal">
+  @include('pengaduan.page_pengaduan')
+</div>

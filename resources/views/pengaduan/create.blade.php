@@ -37,7 +37,7 @@
       </div>
       <!-- /.box-header -->
       <!-- form start -->
-      <form class="form-horizontal"  action="{{ route('admin.pengaduan.store') }}" method="POST">
+      <form class="form-horizontal"  action="{{ route('admin.pengaduan.store') }}" enctype="multipart/form-data" method="POST">
       {{ csrf_field() }}
 
         <div class="box-body">
@@ -153,9 +153,19 @@
 	    </div>
 	    <!-- /.box-header -->
 	    <div class="box-body pad">
-	        <textarea name="content_pengaduan" class="textarea" placeholder="Detail Pengaduan" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-	    </div>
+          <textarea name="content_pengaduan" class="textarea" placeholder="Detail Pengaduan" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>          
+      </div>
+      <div class="box-body form-horizontal">
 
+        <div class="form-group">
+          <label for="attachment" class="col-sm-2 control-label">File Lampiran</label>
+
+          <div class="col-sm-10">
+             <input type="file" name="attachment" class="form-control" placeholder="Judul Pengaduan">
+          </div>
+        </div>
+
+      </div>
 	    <!-- box footer -->
         <div class="box-footer form-horizontal">
           <div class="box-footer">

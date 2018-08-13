@@ -25,6 +25,7 @@ class CreatePengaduansTable extends Migration
             $table->string('title_pengaduan');
             $table->text('content_pengaduan');
             $table->integer('status')->default(1);
+            $table->string('attachment');
             $table->timestamps();
         });
     }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 use App\Pengaduan;
 
@@ -62,9 +64,31 @@ class PengaduanController extends Controller
     {
         $input = $request->all();
 
-        $pengaduan = new Pengaduan;
+        $folderUpload = config('settings.folder_upload_location').Carbon::now(new \DateTimeZone('Asia/Jakarta'))
+                        ->toDateString()."-".$request['title_pengaduan']."/";
 
-        $pengaduan->create($input);
+        $fileName = md5(rand(0,2000)).'.'.$request->attachment->getClientOriginalExtension();
+
+        if($request->hasFile('attachment')){
+            if ($request->file('attachment')->isValid()) {
+                $request->attachment->move(public_path($folderUpload), $fileName);
+            }
+
+        }
+
+        $pengaduan = new Pengaduan;
+        $pengaduan->no_ktp = $input['no_ktp'];
+		$pengaduan->name   = $input['name'];
+		$pengaduan->gender_id  = $input['gender_id'];
+		$pengaduan->birth_date = $input['birth_date'];
+		$pengaduan->phone  = $input['phone'];
+		$pengaduan->email  = $input['email'];
+		$pengaduan->address= $input['address'];
+		$pengaduan->title_pengaduan= $input['title_pengaduan'];
+		$pengaduan->content_pengaduan  = $input['content_pengaduan'];
+        $pengaduan->attachment = $folderUpload.$fileName;
+        
+        $pengaduan->save();
 
         return redirect('/admin/pengaduan')
             ->with('message', 'Data Pengaduan Telah Tersimpan!')
