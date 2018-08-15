@@ -17,7 +17,7 @@ class CreatePengaduansTable extends Migration
             $table->increments('id');
             $table->string('no_ktp');
             $table->string('name');
-            $table->integer('gender_id')->default(1)->nullabele();
+            $table->integer('gender_id')->default(1)->nullable();
             $table->date('birth_date');
             $table->string('phone');
             $table->string('email');
@@ -25,7 +25,7 @@ class CreatePengaduansTable extends Migration
             $table->string('title_pengaduan');
             $table->text('content_pengaduan');
             $table->integer('status')->default(1);
-            $table->string('attachment');
+            $table->string('attachment')->nullable();
             $table->timestamps();
         });
     }
