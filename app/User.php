@@ -52,6 +52,11 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($value);
     }
 
+    public function getFullNameAttribute()
+    {
+        return $this->first_name.' '.$this->last_name;
+    }
+    
     public function fullName()
     {
         return $this->first_name.' '.$this->last_name;
@@ -65,6 +70,11 @@ class User extends Authenticatable
     public function gender()
     {
         return $this->belongsTo('App\Gender');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'user_id');
     }
 
 }
