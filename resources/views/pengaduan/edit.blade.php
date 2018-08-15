@@ -163,9 +163,17 @@
           <div class="form-group">
   
             <div class="col-sm-12">
-                <a class="btn btn-lg btn-info btn-block" target="_blank" data-toggle="tooltip" title="Download Lampiran : {{ $pengaduan->attachment }}" href="{{ asset($pengaduan->attachment) }}">
-                    <i class="fa fa-save"></i> Lihat Lampiran : {{ $pengaduan->title_pengaduan }}
+                @empty($pengaduan->attachment)
+                <a class="btn btn-lg btn-info btn-block disabled" target="_blank" data-toggle="tooltip" title="Download Lampiran : {{ $pengaduan->attachment }}" href="{{ asset($pengaduan->attachment) }}">
+                    <i class="fa fa-ban"></i> File Lampiran Tidak Tersedia
                 </a>
+                @endempty
+
+                @isset($pengaduan->attachment)
+                <a class="btn btn-lg btn-info btn-block" target="_blank" data-toggle="tooltip" title="Download Lampiran : {{ $pengaduan->attachment }}" href="{{ asset($pengaduan->attachment) }}">
+                    <i class="fa fa-download"></i> Lihat Lampiran : {{ $pengaduan->title_pengaduan }}
+                </a>
+                @endisset
             </div>
           </div>
   
