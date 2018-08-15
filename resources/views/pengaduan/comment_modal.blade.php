@@ -15,14 +15,18 @@
                     <tbody>
                         <tr>
                             <th>Komentar</th>
+                            <th>Nama</th>
+                            <th>Jabatan</th>
                         </tr>
                         @forelse ($pengaduan->comments as $comment)
                         <tr>
                             <td>{{ $comment->body }}</td>
+                            <td>{{ $comment->user->fullName }}</td>
+                            <td><span class="badge bg-green">{{ $comment->user->role->name }}</span></td>
                         </tr>
                         @empty
                             <tr>
-                                <td><b>Belum Ada Komentar</b></td>
+                                <td colspan="3"><b>Belum Ada Komentar</b></td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -34,6 +38,7 @@
                     <div class="col-sm-12">
                         <textarea name="body" class="form-control" required=""></textarea>
                         <input name="pengaduan_id" type="text" hidden value="{{ $pengaduan->id }}">
+                        {{-- <input name="user_id" type="text" hidden value="{{ Auth::user()->role_id }}"> --}}
 
                     @if ($errors->has('body'))
                         <span class="help-block">

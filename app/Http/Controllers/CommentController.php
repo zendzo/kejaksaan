@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Pengaduan;
 
 class CommentController extends Controller
@@ -12,7 +13,8 @@ class CommentController extends Controller
         $pengaduan = Pengaduan::findOrFail($request->get('pengaduan_id'));
 
         $pengaduan->comments()->create([
-            'body' => $request->get('body')
+            'body' => $request->get('body'),
+            'user_id' => Auth::user()->role_id,
         ]);
 
         if ($pengaduan) {
