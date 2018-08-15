@@ -28,6 +28,7 @@ class PengaduanTableSeeder extends Seeder
 				'title_pengaduan'	=> $faker->sentence($nbWords = 6, $variableNbWords = true),
 				'content_pengaduan'	=> $faker->text($maxNbChars = 300),
 				'status'			=> rand(1,3),
+				'attachment'		=> null,
     		]);
     	}
 

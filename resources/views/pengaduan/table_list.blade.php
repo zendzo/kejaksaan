@@ -89,10 +89,12 @@
                 <a class="btn btn-xs btn-warning" data-toggle="modal" data-target="#commentModal-{{$pengaduan->id}}" href="#">
                     <span class="fa fa-comment fa-fw"></span>
                 </a>                  
-                    <!-- Modal show pengaduan comment form -->
+                @if($pengaduan->comments)
+                  <!-- Modal show pengaduan comment form -->
                   <div class="modal fade" id="commentModal-{{ $pengaduan->id }}" tabindex="-1" role="dialog" aria-labelledby="commentModal-{{ $pengaduan->id }}">
                       @include('pengaduan.comment_modal')
                   </div>
+                @endif
               </td>
             @endif
          </tr>

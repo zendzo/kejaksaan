@@ -20,7 +20,7 @@ class PengaduanController extends Controller
     {
         $page_title = "Data Pengaduan Masuk";
 
-        $data = Pengaduan::all()->sortByDesc('id');
+        $data = Pengaduan::with('comments')->get();
 
         return view('pengaduan.index',compact(['data','page_title']));
     }
