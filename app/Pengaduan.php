@@ -36,5 +36,10 @@ class Pengaduan extends Model
     public function gender()
     {
         return $this->belongsTo('App\Gender');
-    }
+	}
+	
+	public function comments()
+	{
+		return $this->morphMany(Comment::class,'commentable');
+	}
 }

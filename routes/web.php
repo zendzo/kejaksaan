@@ -59,5 +59,10 @@ Route::group(['prefix'=>'user','as'=>'user.'], function(){
 		'uses'	=>	'PengaduanApprovalController@approve'
 	]);
 
+	Route::post('comment-pengaduan',[
+		'as'	=>	'comment.pengaduan',
+		'uses'	=>	'CommentController@postPengaduanComment'
+	]);
+
 
 });

@@ -45,15 +45,20 @@
           <td>{!! str_limit($pengaduan->content_pengaduan,100) !!}</td>
           <td>
             @if ($pengaduan->status === 1)
-              <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#pengaduanModal">baru</button>
+              <button class="btn btn-xs btn-info" data-toggle="modal" data-target="#pengaduanModal-{{$pengaduan->id}}">baru</button>
             @endif
             @if ($pengaduan->status === 2)
-              <button class="btn btn-xs btn-success" data-toggle="modal" data-target="#pengaduanModal">disetujui</button>
+              <button class="btn btn-xs btn-success" data-toggle="modal" data-target="#pengaduanModal-{{$pengaduan->id}}">disetujui</button>
             @endif
             @if ($pengaduan->status === 3)
-              <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#pengaduanModal">ditolak</button>
+              <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#pengaduanModal-{{$pengaduan->id}}">ditolak</button>
             @endif
+            <!-- Modal show pengaduan document -->
+            <div class="modal fade" id="pengaduanModal-{{$pengaduan->id}}" tabindex="-1" role="dialog" aria-labelledby="pengaduanModal-{{$pengaduan->id}}">
+              @include('pengaduan.page_pengaduan')
+            </div>
           </td>
+          {{-- if user role_id == 1 show edit destory and detail --}}
             @if(Auth::user()->role_id === 1 )
                 <td width="10%" class="text-center">
                 <a class="btn btn-xs btn-info" href="{{ route('admin.pengaduan.show',$pengaduan->id) }}">
@@ -71,14 +76,24 @@
                   </button>
                 </form>
                 @endif
+                </td>
             @endif
 
-            @if(Auth::user()->role_id !== 1 )
-                <td width="10%" class="text-center">
-                  <a class="btn btn-xs btn-info" href="{{ route('user.pengaduan.show',$pengaduan->id) }}">
-                    <span class="fa fa-info fa-fw"></span>
-                  </a>
-                </td>
+            {{-- if users role_id == 2 show comment and approval button--}}
+            @if(Auth::user()->role_id !== 1 && Auth::user()->role_id === 2 )
+              <td width="10%" class="text-center">
+                <a class="btn btn-xs btn-info" href="{{ route('user.pengaduan.show',$pengaduan->id) }}">
+                  <span class="fa fa-info fa-fw"></span>
+                </a>
+
+                <a class="btn btn-xs btn-warning" data-toggle="modal" data-target="#commentModal-{{$pengaduan->id}}" href="#">
+                    <span class="fa fa-comment fa-fw"></span>
+                </a>                  
+                    <!-- Modal show pengaduan comment form -->
+                  <div class="modal fade" id="commentModal-{{ $pengaduan->id }}" tabindex="-1" role="dialog" aria-labelledby="commentModal-{{ $pengaduan->id }}">
+                      @include('pengaduan.comment_modal')
+                  </div>
+              </td>
             @endif
          </tr>
         @endforeach
@@ -88,8 +103,3 @@
   <!-- /.box-body -->
 </div>
 <!-- /.box -->
-
-<!-- Modal -->
-<div class="modal fade" id="pengaduanModal" tabindex="-1" role="dialog" aria-labelledby="pengaduanModal">
-  @include('pengaduan.page_pengaduan')
-</div>
