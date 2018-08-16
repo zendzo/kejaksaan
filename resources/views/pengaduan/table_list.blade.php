@@ -97,10 +97,9 @@
               <a class="btn btn-xs btn-info" href="{{ route('user.pengaduan.show',$pengaduan->id) }}">
                   <span class="fa fa-info fa-fw"></span>
               </a>
-              <a class="btn btn-xs btn-warning" href="{{ route('user.pengaduan.show',$pengaduan->id) }}">
-                  <span class="fa fa-tasks fa-fw"></span>
-              </a>
 
+              @include('team.team_button')
+              
               @include('comment.comment_button')
             </td>
           @endif

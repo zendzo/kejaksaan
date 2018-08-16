@@ -8,6 +8,7 @@ use Illuminate\Http\File;
 use Carbon\Carbon;
 
 use App\Pengaduan;
+use App\User;
 
 class PengaduanController extends Controller
 {
@@ -31,7 +32,9 @@ class PengaduanController extends Controller
 
         $data = Pengaduan::whereStatus(2)->get();
 
-        return view('pengaduan.approved',compact(['data','page_title']));
+        $team = User::where('role_id',5)->get();
+
+        return view('pengaduan.approved',compact(['data','team','page_title']));
     }
 
     public function rejected()
