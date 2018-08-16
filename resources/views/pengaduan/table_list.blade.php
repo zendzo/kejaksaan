@@ -58,25 +58,26 @@
               @include('pengaduan.page_pengaduan')
             </div>
           </td>
+
           {{-- if user role_id == 1 show edit destory and detail --}}
             @if(Auth::user()->role_id === 1 )
-                <td width="10%" class="text-center">
-                <a class="btn btn-xs btn-info" href="{{ route('admin.pengaduan.show',$pengaduan->id) }}">
-                  <span class="fa fa-info fa-fw"></span>
-                </a>
-                <a class="btn btn-xs btn-primary" href="{{ route('admin.pengaduan.edit',$pengaduan->id) }}">
-                  <span class="fa fa-pencil fa-fw"></span>
-                </a>
-                @if(Auth::user()->role_id === 1)
-                  <form method="POST" action="{{ route('admin.pengaduan.destroy',$pengaduan->id) }}" accept-charset="UTF-8" style="display:inline">
-                  {{ method_field('DELETE') }}
-                  {{ csrf_field() }}
-                  <button type="submit" class="btn btn-xs btn-danger">
-                    <span class="fa fa-close fa-fw"></span>
-                  </button>
-                </form>
-                @endif
-                </td>
+              <td width="10%" class="text-center">
+              <a class="btn btn-xs btn-info" href="{{ route('admin.pengaduan.show',$pengaduan->id) }}">
+                <span class="fa fa-info fa-fw"></span>
+              </a>
+              <a class="btn btn-xs btn-primary" href="{{ route('admin.pengaduan.edit',$pengaduan->id) }}">
+                <span class="fa fa-pencil fa-fw"></span>
+              </a>
+              @if(Auth::user()->role_id === 1)
+                <form method="POST" action="{{ route('admin.pengaduan.destroy',$pengaduan->id) }}" accept-charset="UTF-8" style="display:inline">
+                {{ method_field('DELETE') }}
+                {{ csrf_field() }}
+                <button type="submit" class="btn btn-xs btn-danger">
+                  <span class="fa fa-close fa-fw"></span>
+                </button>
+              </form>
+              @endif
+              </td>
             @endif
 
             {{-- if users role_id == 2 show comment and approval button--}}
@@ -86,17 +87,23 @@
                   <span class="fa fa-info fa-fw"></span>
                 </a>
 
-                <a class="btn btn-xs btn-warning" data-toggle="modal" data-target="#commentModal-{{$pengaduan->id}}" href="#">
-                    <span class="fa fa-comment fa-fw"></span>
-                </a>                  
-                @if($pengaduan->comments)
-                  <!-- Modal show pengaduan comment form -->
-                  <div class="modal fade" id="commentModal-{{ $pengaduan->id }}" tabindex="-1" role="dialog" aria-labelledby="commentModal-{{ $pengaduan->id }}">
-                      @include('pengaduan.comment_modal')
-                  </div>
-                @endif
+                @include('comment.comment_button')
               </td>
             @endif
+
+          {{-- if user role_id == 3 show comment and team maker modal --}}
+          @if(Auth::user()->role_id !== 1 && Auth::user()->role_id === 3)
+            <td class="text-center">
+              <a class="btn btn-xs btn-info" href="{{ route('user.pengaduan.show',$pengaduan->id) }}">
+                  <span class="fa fa-info fa-fw"></span>
+              </a>
+              <a class="btn btn-xs btn-warning" href="{{ route('user.pengaduan.show',$pengaduan->id) }}">
+                  <span class="fa fa-tasks fa-fw"></span>
+              </a>
+
+              @include('comment.comment_button')
+            </td>
+          @endif
          </tr>
         @endforeach
       </tbody>
