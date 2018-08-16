@@ -30,7 +30,7 @@ class PengaduanController extends Controller
     {
         $page_title = "Data Pengaduan Disetujui";
 
-        $data = Pengaduan::whereStatus(2)->get();
+        $data = Pengaduan::whereStatus(2)->with('team')->get();
 
         $team = User::where('role_id',5)->get();
 

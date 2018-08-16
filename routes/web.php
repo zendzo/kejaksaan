@@ -64,5 +64,10 @@ Route::group(['prefix'=>'user','as'=>'user.'], function(){
 		'uses'	=>	'CommentController@postPengaduanComment'
 	]);
 
+	Route::post('team-pengaduan',[
+		'as'	=>	'team.pengaduan',
+		'uses'	=>	'PengaduanTeamController@attachTeamToModal'
+	]);
+
 
 });

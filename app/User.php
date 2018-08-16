@@ -77,4 +77,9 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class,'user_id');
     }
 
+    public function team()
+    {
+        return $this->belongsToMany(Pengaduan::class);
+    }
+
 }

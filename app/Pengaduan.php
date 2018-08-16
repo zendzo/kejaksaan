@@ -42,4 +42,9 @@ class Pengaduan extends Model
 	{
 		return $this->morphMany(Comment::class,'commentable');
 	}
+
+	public function team()
+	{
+		return $this->belongsToMany(User::class);
+	}
 }
