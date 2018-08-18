@@ -44,6 +44,11 @@ Route::group(['prefix'=>'user','as'=>'user.'], function(){
 		'uses'	=>	'PengaduanController@approved'
 	]);
 
+	Route::get('pengaduan-disetujui-team',[
+		'as'	=>	'pengaduan.disetujui.team',
+		'uses'	=>	'PengaduanController@pengaduanWithTeam'
+	]);
+
 	Route::get('pengaduan-ditolak',[
 		'as'	=>	'pengaduan.ditolak',
 		'uses'	=>	'PengaduanController@rejected'
@@ -69,5 +74,31 @@ Route::group(['prefix'=>'user','as'=>'user.'], function(){
 		'uses'	=>	'PengaduanTeamController@attachTeamToModal'
 	]);
 
+	Route::resource('report', 'ReportController');
+
+	Route::get('tolak-laporan/{laporanId}',[
+		'as'	=>	'tolak.laporan',
+		'uses'	=>	'LaporanApprovalController@reject'
+	]);
+
+	Route::get('setujui-laporan/{laporanId}',[
+		'as'	=>	'setujui.laporan',
+		'uses'	=>	'LaporanApprovalController@approve'
+	]);
+
+	Route::get('pengaduan-disetujui-report',[
+		'as'	=>	'pengaduan.disetujui.report',
+		'uses'	=>	'ReportController@pengaduanWithReport'
+	]);
+
+	Route::get('pengaduan-disetujui-report-disetujui',[
+		'as'	=>	'pengaduan.disetujui.report.approved',
+		'uses'	=>	'ReportController@pengaduanWithReportApproved'
+	]);
+
+	Route::get('pengaduan-disetujui-report-ditolak',[
+		'as'	=>	'pengaduan.disetujui.report.rejected',
+		'uses'	=>	'ReportController@pengaduanWithReportRejected'
+	]);
 
 });
