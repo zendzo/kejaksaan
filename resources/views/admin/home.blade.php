@@ -9,12 +9,12 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>{{-- {{ $pembelian }} --}}</h3>
+              <h3>{{ $pengguna }}</h3>
 
-              <p>Total Pembelian</p>
+              <p>Total Pegawai</p>
             </div>
             <div class="icon">
-              <i class="glyphicon glyphicon-shopping-cart"></i>
+              <i class="fa fa-users"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -24,14 +24,14 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>{{-- {{ $penjualan }} --}}</h3>
+              <h3>{{ $pengaduan }}</h3>
 
-              <p>Total Penjualan</p>
+              <p>Total Pengaduan</p>
             </div>
             <div class="icon">
               <i class="glyphicon glyphicon-send"></i>
             </div>
-            <a href="#}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -39,9 +39,9 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>{{-- {{ $supplier }} --}}</h3>
+              <h3>{{ $report }}</h3>
 
-              <p>Total Supplier</p>
+              <p>Total Laporan</p>
             </div>
             <div class="icon">
               <i class="fa fa-files-o"></i>
@@ -54,9 +54,9 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>{{-- {{ $pengguna }} --}}</h3>
+              <h3>{{ $team }}</h3>
 
-              <p>Total Pelanggan</p>
+              <p>Team Penyidik</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
