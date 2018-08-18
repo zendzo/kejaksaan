@@ -199,4 +199,15 @@ class PengaduanController extends Controller
     {
         //
     }
+
+    public function pengaduanWithTeam()
+    {
+        $data = Pengaduan::whereStatus(2)->has('team')->get();
+
+        $team = User::where('role_id',5)->get();
+
+        $page_title = "Data Pengaduan Masuk Dan Telah Dibentuk Tim Penyidik";
+
+        return view('pengaduan.index',compact(['data','team','page_title']));
+    }
 }
