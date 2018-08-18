@@ -41,9 +41,14 @@
         @include('user.menu_kajati')
       @endif
 
-      <!-- kajati user menu -->
+      <!-- kajati penyidik menu -->
       @if(Auth::user()->role_id === 3)
-        @include('user.menu_bidang_penyidik')
+        @include('user.menu_bidang_inteligent')
+      @endif
+
+      <!-- kajati penyidik menu -->
+      @if(Auth::user()->role_id === 4)
+        @include('user.menu_team_penyidik')
       @endif
     </ul><!-- /.sidebar-menu -->
   </section>

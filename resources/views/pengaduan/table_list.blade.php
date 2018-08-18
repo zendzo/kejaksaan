@@ -88,6 +88,15 @@
                 </a>
 
                 @include('comment.comment_button')
+
+                @if(Request::segment(2) === 'pengaduan-disetujui-team')
+                  @include('team.team_button')
+                @endif
+
+                @if(Request::segment(2) === 'pengaduan-disetujui-report' or Request::segment(2) === 'pengaduan-disetujui-report-disetujui' or Request::segment(2) === 'pengaduan-disetujui-report-ditolak')
+                  @include('final_report.report_button')
+                @endif
+
               </td>
             @endif
 
@@ -103,6 +112,23 @@
               @include('comment.comment_button')
             </td>
           @endif
+
+          {{-- if user role_id == 4 show comment and team maker modal --}}
+          @if(Auth::user()->role_id !== 1 && Auth::user()->role_id === 4)
+            <td class="text-center">
+              <a class="btn btn-xs btn-info" href="{{ route('user.pengaduan.show',$pengaduan->id) }}">
+                  <span class="fa fa-info fa-fw"></span>
+              </a>
+
+              @include('team.team_button')
+              
+              @include('comment.comment_button')
+
+              @include('final_report.report_button')
+              
+            </td>
+          @endif
+
          </tr>
         @endforeach
       </tbody>

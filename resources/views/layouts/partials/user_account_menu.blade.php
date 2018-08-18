@@ -17,7 +17,7 @@
                 <small>{{ Auth::user()->updated_at->diffForHumans() }}</small>
             </p>
         </li>
-        <!-- Menu Body -->
+        {{-- <!-- Menu Body -->
         <li class="user-body">
             <div class="col-xs-4 text-center">
                 <a href="#">Followers</a>
@@ -28,7 +28,7 @@
             <div class="col-xs-4 text-center">
                 <a href="#">Friends</a>
             </div>
-        </li>
+        </li> --}}
         <!-- Menu Footer-->
         <li class="user-footer">
             <div class="pull-left">
