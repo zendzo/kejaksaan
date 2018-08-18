@@ -12,7 +12,7 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        $role = ['Administrator','Wakil Kajati (Staf)','Ass. Bidang Penyidik','Ketua Tim Penyidik'];
+        $role = ['Administrator','Waka Kajati (Staf)','Ass. Bidang Penyidik','Ketua Tim Penyidik','Penyidik'];
 
         foreach ($role as $index) {
             Role::create([
