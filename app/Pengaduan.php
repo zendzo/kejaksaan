@@ -47,4 +47,9 @@ class Pengaduan extends Model
 	{
 		return $this->belongsToMany(User::class);
 	}
+
+	public function report()
+	{
+		return $this->hasOne(Report::class);
+	}
 }

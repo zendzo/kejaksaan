@@ -82,4 +82,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Pengaduan::class);
     }
 
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+
 }
