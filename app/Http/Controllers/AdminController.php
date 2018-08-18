@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-// use App\Pembelian;
-// use App\Penjualan;
-// use App\Supplier;
+use App\Pengaduan;
+use App\Team;
+use App\Report;
 
 class AdminController extends Controller
 {
@@ -19,14 +19,14 @@ class AdminController extends Controller
     {
     	$page_title = "Halaman utama";
 
-    	// $pembelian = Pembelian::count();
+    	$pengaduan = Pengaduan::count();
 
-    	// $penjualan = Penjualan::count();
+    	$team = Pengaduan::has('team')->count();
 
-    	// $pengguna = User::count();
+    	$pengguna = User::count();
 
-    	// $supplier = Supplier::count();
+    	$report = Report::count();
 
-    	return view('admin.home',compact(['page_title','pembelian','penjualan','pengguna','supplier']));
+    	return view('admin.home',compact(['page_title','pengaduan','team','pengguna','report']));
     }
 }

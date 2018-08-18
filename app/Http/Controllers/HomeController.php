@@ -28,6 +28,8 @@ class HomeController extends Controller
         if (Auth::user()->role_id === 1) {
             return redirect('/admin');
         }
-        return view('home');
+
+        $page_title = "Welcome ".Auth::user()->fullName;
+        return view('home',compact('page_title'));
     }
 }
