@@ -19,7 +19,7 @@
                 </tr>
                 @forelse ($pengaduan->comments as $comment)
                 <tr>
-                    <td>{{ $comment->body }}</td>
+                    <td>{{ $comment->body }} ({{ $comment->created_at->format('d/m/Y') }})</td>
                     <td>{{ $comment->user->fullName }}</td>
                     <td><span class="badge bg-green">{{ $comment->user->role->name }}</span></td>
                 </tr>
