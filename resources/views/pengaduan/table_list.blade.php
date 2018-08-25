@@ -129,6 +129,20 @@
             </td>
           @endif
 
+          {{-- if user role_id == 5 show comment and investigation report modal --}}
+          @if(Auth::user()->role_id !== 1 && Auth::user()->role_id === 5)
+            <td class="text-center">
+              <a class="btn btn-xs btn-info" href="{{ route('user.pengaduan.show',$pengaduan->id) }}">
+                  <span class="fa fa-info fa-fw"></span>
+              </a>
+              
+              @include('comment.comment_button')
+
+              @include('final_report.report_button')
+              
+            </td>
+          @endif
+
          </tr>
         @endforeach
       </tbody>
