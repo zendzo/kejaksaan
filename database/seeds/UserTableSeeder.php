@@ -7,7 +7,7 @@ use App\User;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
 
-class UsersTableSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

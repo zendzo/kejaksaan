@@ -68,36 +68,48 @@ class PengaduanController extends Controller
     {
         $input = $request->all();
 
-        $folderUpload = config('settings.folder_upload_location').Carbon::now(new \DateTimeZone('Asia/Jakarta'))
-                        ->toDateString()."-".$request['title_pengaduan']."/";
+        $pengaduan = new Pengaduan;
 
-        $fileName = md5(rand(0,2000)).'.'.$request->attachment->getClientOriginalExtension();
+        if (!$request->has('attachment')) {
+            $pengaduan->create($request->except('attachment'));
+
+            return redirect('admin/pengaduan')
+                            ->with('message','Data Berhasil Diupdate!')
+                            ->with('status','success')
+                            ->with('type','success');
+        }
+
 
         if($request->hasFile('attachment')){
             if ($request->file('attachment')->isValid()) {
+				
+                $folderUpload = config('settings.folder_upload_location').Carbon::now(new \DateTimeZone('Asia/Jakarta'))
+                                ->toDateString()."-".$request['title_pengaduan']."/";
+
+                $fileName = md5(rand(0,2000)).'.'.$request->attachment->getClientOriginalExtension();
+
                 $request->attachment->move(public_path($folderUpload), $fileName);
+
+                $pengaduan->no_ktp = $input['no_ktp'];
+                $pengaduan->name   = $input['name'];
+                $pengaduan->gender_id  = $input['gender_id'];
+                $pengaduan->birth_date = $input['birth_date'];
+                $pengaduan->phone  = $input['phone'];
+                $pengaduan->email  = $input['email'];
+                $pengaduan->address= $input['address'];
+                $pengaduan->title_pengaduan= $input['title_pengaduan'];
+                $pengaduan->content_pengaduan  = $input['content_pengaduan'];
+                $pengaduan->attachment = $folderUpload.$fileName;
+                
+                $pengaduan->save();
+
+                return redirect('/admin/pengaduan')
+                    ->with('message', 'Data Pengaduan Telah Tersimpan!')
+                    ->with('status','success')
+                    ->with('type','success');
             }
 
         }
-
-        $pengaduan = new Pengaduan;
-        $pengaduan->no_ktp = $input['no_ktp'];
-		$pengaduan->name   = $input['name'];
-		$pengaduan->gender_id  = $input['gender_id'];
-		$pengaduan->birth_date = $input['birth_date'];
-		$pengaduan->phone  = $input['phone'];
-		$pengaduan->email  = $input['email'];
-		$pengaduan->address= $input['address'];
-		$pengaduan->title_pengaduan= $input['title_pengaduan'];
-		$pengaduan->content_pengaduan  = $input['content_pengaduan'];
-        $pengaduan->attachment = $folderUpload.$fileName;
-        
-        $pengaduan->save();
-
-        return redirect('/admin/pengaduan')
-            ->with('message', 'Data Pengaduan Telah Tersimpan!')
-            ->with('status','success')
-            ->with('type','success');
     }
 
     /**
