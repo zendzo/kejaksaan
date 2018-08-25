@@ -75,11 +75,13 @@
       <div class="row no-print">
         <div class="col-xs-12">
           <button data-dismiss="modal" class="btn btn-default"><i class="fa fa-close"></i> Close</button>
+          @if(Auth::user()->role_id === 2)
           <a href="{{ url('/user/tolak-pengaduan', $pengaduan->id ) }}" class="btn btn-warning pull-right" style="margin-right: 5px;"><i class="fa fa-ban">
             </i> Tolak Permohonan
           </a>
           <a href="{{ url('/user/setujui-pengaduan', $pengaduan->id ) }}" class="btn btn-success pull-right" style="margin-right: 5px;"><i class="fa fa-check">
             </i> Terima Permohonan
           </a>
+          @endif
       </div>
   </section>
