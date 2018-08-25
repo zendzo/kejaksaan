@@ -50,6 +50,12 @@
       @if(Auth::user()->role_id === 4)
         @include('user.menu_team_penyidik')
       @endif
+
+      <!-- kajati penyidik menu -->
+      @if(Auth::user()->role_id === 4 or Auth::user()->role_id === 5)
+        @include('user.menu_team_penyidik')
+      @endif
+
     </ul><!-- /.sidebar-menu -->
   </section>
   <!-- /.sidebar -->
