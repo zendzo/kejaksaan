@@ -14,7 +14,7 @@ class CommentController extends Controller
 
         $pengaduan->comments()->create([
             'body' => $request->get('body'),
-            'user_id' => Auth::user()->role_id,
+            'user_id' => Auth::id(),
         ]);
 
         if ($pengaduan) {
