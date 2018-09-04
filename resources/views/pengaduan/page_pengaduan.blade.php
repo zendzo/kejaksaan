@@ -26,7 +26,10 @@
       <b>No: TP/10/12/17</b><br>
         <br>
         <b>Hal :</b> Data Pengaduan<br>
-        <b>Lamp :</b> -<br><br>
+        <b>Lamp :</b> -
+        <a target="_blank" data-toggle="tooltip" title="Download Lampiran : {{ $pengaduan->attachment }}" href="{{ asset($pengaduan->attachment) }}">
+          {{ $pengaduan->title_pengaduan }}
+        </a><br><br>
         <h4><b><u>Data Pelapor</u></b></h4>
         <address>
           <address>
