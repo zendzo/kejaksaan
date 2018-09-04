@@ -27,7 +27,8 @@ class UserTableSeeder extends Seeder
                 'email'         =>  $faker->safeEmail,
                 'phone'         =>  env('CUSTOMER_TEST_PHONENUMBER'),
                 'password'      =>  'adminadmin',
-                'role_id'       =>  rand(1,4)
+                'role_id'       =>  rand(1,4),
+                'active'        =>  rand(0,1),
             ]);
         }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Role;
 use App\User;
 
 class PegawaiController extends Controller
@@ -30,7 +31,9 @@ class PegawaiController extends Controller
     {
         $page_title = "Tambah pegawai";
 
-        return view('pegawai.create',compact('page_title'));
+        $roles = Role::where('id', '>', 1)->get();
+
+        return view('pegawai.create',compact(['page_title','roles']));
     }
 
     /**
@@ -43,14 +46,22 @@ class PegawaiController extends Controller
     {
         $input = $request->all();
 
-        $user = new User;
+        try {
+            
+            User::create($input);
 
-        $user->create($input);
+            return redirect('/admin/pegawai')
+                ->with('message', 'Data Telah Tersimpan!')
+                ->with('status','success')
+                ->with('type','success');
 
-        return redirect('/admin/pegawai')
-            ->with('message', 'Data Telah Tersimpan!')
-            ->with('status','success')
-            ->with('type','success');
+        } catch(\Exception $e)
+        {
+            return redirect()->back()->withInput()
+            ->with('message', $e->getMessage())
+            ->with('status','error')
+            ->with('type','error');
+        }
     }
 
     /**
@@ -99,12 +110,21 @@ class PegawaiController extends Controller
 
         $user = User::findOrFail($id);
 
-        $user->update($input);
+        try {
 
-        return redirect()->route('admin.pegawai.index')
-                        ->with('message', 'Data Telah Tersimpan!')
-                        ->with('status','success')
-                        ->with('type','success');
+            $user->update($input);
+
+            return redirect()->route('admin.pegawai.index')
+                            ->with('message', 'Data Telah Tersimpan!')
+                            ->with('status','success')
+                            ->with('type','success');
+        } catch( \Exception $e)
+        {
+            return redirect()->back()->withInputs()
+                            ->with('message', $e->getMessage())
+                            ->with('status','error')
+                            ->with('type','error');
+        }
     }
 
     /**

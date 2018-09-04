@@ -26,7 +26,8 @@ class AdminUserSeeder extends Seeder
             $user->birth_date = '12/09/1992';
 	        $user->phone = env('CUSTOMER_TEST_PHONENUMBER');
 	        $user->password = 'adminadmin';
-	        $user->role_id = 1;
+            $user->role_id = 1;
+            $user->active = true;
 	        $user->save();
         }
 

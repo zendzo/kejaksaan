@@ -136,6 +136,23 @@
                 </div>
               </div>
 
+              <div class="form-group{{ $errors->has('active') ? ' has-error' : '' }}">
+                <label for="email" class="col-sm-2 control-label">User Status</label>
+                  
+                  <div class="col-sm-10">
+                    <select class="form-control" name="active" id="active">
+                      <option value="1">Aktif</option>  
+                      <option value="0">Non Aktif</option>
+                    </select>
+
+                    @if ($errors->has('active'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('active') }}</strong>
+                        </span>
+                    @endif
+                  </div>
+              </div>
+
               <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                 <label for="password" class="col-sm-2 control-label">password</label>
 

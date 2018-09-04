@@ -26,6 +26,7 @@ class User extends Authenticatable
         'role_id',
         'birth_date',
         'gender_id',
+        'active',
     ];
 
     /**
@@ -56,7 +57,7 @@ class User extends Authenticatable
     {
         return $this->first_name.' '.$this->last_name;
     }
-    
+	   
     public function fullName()
     {
         return $this->first_name.' '.$this->last_name;

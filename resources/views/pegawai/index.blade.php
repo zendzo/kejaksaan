@@ -20,6 +20,7 @@
                   <th>Jenis User</th>
                   <th>email</th>
                   <th>phone</th>
+				          <th>Status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -33,6 +34,11 @@
                         <td>{{ $user->role->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
+                        @if($user->active)
+                          <td>User Aktif</td>
+                        @else
+                          <td>Non Aktif</td>
+                        @endif
                         <td width="10%" class="text-center">
                           <a class="btn btn-xs btn-info" href="{{ route('user.profile.show',$user->id) }}">
                             <span class="fa fa-info fa-fw"></span>
