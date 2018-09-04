@@ -94,13 +94,15 @@
             <div class="row no-print">
             <div class="col-xs-12">
                 <button data-dismiss="modal" class="btn btn-default"><i class="fa fa-close"></i> Close</button>
-                @if($pengaduan->report->status === 1)
-                    <a href="{{ url('/user/tolak-laporan', $pengaduan->report->id ) }}" class="btn btn-warning pull-right" style="margin-right: 5px;"><i class="fa fa-ban">
-                        </i> Tolak Laporan
-                    </a>
-                    <a href="{{ url('/user/setujui-laporan', $pengaduan->report->id ) }}" class="btn btn-success pull-right" style="margin-right: 5px;"><i class="fa fa-check">
-                        </i> Terima Laporan
-                    </a>
+                @if (Auth::user()->role_id == 2)
+                    @if($pengaduan->report->status === 1)
+                        <a href="{{ url('/user/tolak-laporan', $pengaduan->report->id ) }}" class="btn btn-warning pull-right" style="margin-right: 5px;"><i class="fa fa-ban">
+                            </i> Tolak Laporan
+                        </a>
+                        <a href="{{ url('/user/setujui-laporan', $pengaduan->report->id ) }}" class="btn btn-success pull-right" style="margin-right: 5px;"><i class="fa fa-check">
+                            </i> Terima Laporan
+                        </a>
+                    @endif
                 @endif
 
                 @if($pengaduan->report->status === 2)
