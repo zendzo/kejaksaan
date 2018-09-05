@@ -22,6 +22,7 @@
                             <th>Jabatan</th>
                             <th>Jenis Kelamin</th>
                             <th>Email</th>
+                            <th>Pemberi Wewenang</th>
                         </tr>
                         @forelse ($pengaduan->team as $penyidik)
                         <tr>
@@ -29,10 +30,15 @@
                             <td><span class="badge bg-green">{{ $penyidik->role->name }}</span></td>
                             <td>{{ $penyidik->gender->gender }}</td>
                             <td>{{ $penyidik->email }}</td>
+                        <td>
+                            <a href="{{ url('/user/profile',$penyidik->pivot->supervisior_id) }}">
+                                {{ $penyidik->pivot->supervisior_name }} - ({{ $penyidik->pivot->supervisior_occupation }})
+                            </a>
+                        </td>
                         </tr>
                         @empty
                             <tr>
-                            <td colspan="4"><b>Belum Ada Penyidik Untuk {{ $pengaduan->title_pengaduan}}</b></td>
+                            <td colspan="5"><b>Belum Ada Penyidik Untuk {{ $pengaduan->title_pengaduan}}</b></td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -54,7 +60,7 @@
                             <th>Jenis Kelamin</th>
                             <th>Email</th>
                         </tr>
-                        @forelse ($team as $penyidik)
+                        @forelse ($team->whereNotIn('id',$pengaduan->idUserInTeam($pengaduan->id)) as $penyidik)
                         <tr>
                             <td>
                                 <input class="form-group" type="checkbox" value="{{ $penyidik->id }}" name="team[]">

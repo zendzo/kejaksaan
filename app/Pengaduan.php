@@ -45,11 +45,31 @@ class Pengaduan extends Model
 
 	public function team()
 	{
-		return $this->belongsToMany(User::class);
+		return $this->belongsToMany(User::class)->withPivot([
+			'supervisior_id',
+			'supervisior_name',
+			'supervisior_email',
+			'supervisior_occupation'
+			]);
 	}
 
 	public function report()
 	{
 		return $this->hasOne(Report::class);
+	}
+
+	public function idUserInTeam($id)
+	{
+		$pengaduan = $this->findOrFail($id);
+		$userAlreadyInTeam = [];
+		// get the users id which already assing as team member for pengaduan
+		// store in array $userAlreadyInTeam for filter collection to prevent double assign the same user
+		// loop $team->whereNotIn('id',$pengaduan->idUserInTeam($pengaduan->id)) in team_modal
+            if (isset($pengaduan->team)) {
+					foreach ($pengaduan->team as $team) {
+						$userAlreadyInTeam[] = $team->id;
+					}
+					return $userAlreadyInTeam;
+				}
 	}
 }

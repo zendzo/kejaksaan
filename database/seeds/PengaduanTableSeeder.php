@@ -16,7 +16,7 @@ class PengaduanTableSeeder extends Seeder
     {
     	$faker = Faker::create('id_ID');
 
-    	foreach (range(1, 50) as $index) {
+    	foreach (range(1, 3) as $index) {
     		Pengaduan::create([
     			'no_ktp'			=> $faker->numberBetween($min = 1000000, $max = 9000000),
 				'name'				=> "$faker->firstName $faker->lastName",

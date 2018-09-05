@@ -80,7 +80,12 @@ class User extends Authenticatable
 
     public function team()
     {
-        return $this->belongsToMany(Pengaduan::class);
+        return $this->belongsToMany(Pengaduan::class)->withPivot([
+			'supervisior_id',
+			'supervisior_name',
+			'supervisior_email',
+			'supervisior_occupation'
+			]);
     }
 
     public function reports()

@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if (! $this->app->runningInConsole()) {
 
-            View::share('roles', Role::where('id','>',3)->get());
+            View::share('roles', Role::where('id','>',1)->get());
         }
     }
 

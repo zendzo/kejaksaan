@@ -17,6 +17,10 @@ class CreatePengaduanTeamTable extends Migration
             // $table->primary('pengaduan_id','user_id');
             $table->integer('pengaduan_id');
             $table->integer('user_id');
+            $table->integer('supervisior_id');
+            $table->string('supervisior_name');
+            $table->string('supervisior_email');
+            $table->string('supervisior_occupation');
             $table->timestamps();
         });
     }
