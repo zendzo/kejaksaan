@@ -58,6 +58,11 @@ class Pengaduan extends Model
 		return $this->hasOne(Report::class);
 	}
 
+	public function invReport()
+	{
+		 return $this->hasMany(InvReport::class);
+	}
+
 	public function idUserInTeam($id)
 	{
 		$pengaduan = $this->findOrFail($id);

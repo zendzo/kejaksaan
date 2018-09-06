@@ -125,6 +125,8 @@
               @include('comment.comment_button')
 
               @include('final_report.report_button')
+
+              @include('inv_report.report_button')
               
             </td>
           @endif
@@ -138,7 +140,7 @@
               
               @include('comment.comment_button')
 
-              @include('final_report.report_button')
+              @include('inv_report.report_button')
               
             </td>
           @endif
