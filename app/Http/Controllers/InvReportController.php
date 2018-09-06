@@ -8,18 +8,8 @@ use Carbon\Carbon;
 use App\Pengaduan;
 use App\User;
 
-class ReportController extends Controller
+class InvReportController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -40,7 +30,7 @@ class ReportController extends Controller
             if ($request->file('attachment')->isValid()) {
                 $request->attachment->move(public_path($folderUpload), $fileName);
 
-                $pengaduan->report()->create([
+                $pengaduan->invReport()->create([
                     'body' => $input['body'],
                     'user_id' => Auth::user()->id,
                     'pengaduan_id' => $input['pengaduan_id'],
@@ -50,7 +40,7 @@ class ReportController extends Controller
             }
 
         }else{
-            $pengaduan->report()->create([
+            $pengaduan->invReport()->create([
                 'body' => $input['body'],
                 'user_id' => Auth::user()->id,
                 'pengaduan_id' => $input['pengaduan_id']
@@ -97,40 +87,14 @@ class ReportController extends Controller
         //
     }
 
-    public function pengaduanWithReport()
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $data = Pengaduan::whereStatus(2)->has('report')->get();
-
-        $team = User::where('role_id',5)->get();
-
-        $page_title = "Data Laporan Penyidikan Masuk";
-
-        return view('pengaduan.index',compact(['data','team','page_title']));
-    }
-
-    public function pengaduanWithReportApproved()
-    {
-        $data = Pengaduan::whereStatus(2)->whereHas('report', function ($query) {
-            $query->where('status', '=', 2);
-        })->get();
-
-        $team = User::where('role_id',5)->get();
-
-        $page_title = "Data Laporan Penyidikan Masuk";
-
-        return view('pengaduan.index',compact(['data','team','page_title']));
-    }
-
-    public function pengaduanWithReportRejected()
-    {
-        $data = Pengaduan::whereStatus(2)->whereHas('report', function ($query) {
-            $query->where('status', '=', 3);
-        })->get();
-
-        $team = User::where('role_id',5)->get();
-
-        $page_title = "Data Laporan Penyidikan Masuk";
-
-        return view('pengaduan.index',compact(['data','team','page_title']));
+        //
     }
 }

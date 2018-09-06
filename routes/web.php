@@ -76,6 +76,8 @@ Route::group(['prefix'=>'user','as'=>'user.'], function(){
 
 	Route::resource('report', 'ReportController');
 
+	Route::resource('inv-report', 'InvReportController');
+
 	Route::get('tolak-laporan/{laporanId}',[
 		'as'	=>	'tolak.laporan',
 		'uses'	=>	'LaporanApprovalController@reject'

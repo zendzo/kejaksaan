@@ -214,7 +214,7 @@ class PengaduanController extends Controller
 
     public function pengaduanWithTeam()
     {
-        $data = Pengaduan::whereStatus(2)->has('team')->get();
+        $data = Pengaduan::whereStatus(2)->has('team')->with(['report','invReport'])->get();
 
         $team = User::where('role_id',5)->get();
 
