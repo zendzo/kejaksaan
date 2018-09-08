@@ -53,7 +53,13 @@
                             <td>{{ $report->created_at->format('d/m/Y') }}</td>
                             <td><a href="{{ url('/user/profile', $report->user->id) }}">{{ $report->user->fullName }}</a></td>
                             <td>{{ $report->body }}</td>
-                            <td><span class="badge bg-green">{{ $report->attachment }}</span></td>
+                            @isset($report->attachment)
+                                <td><a href="{{ asset($report->attachment) }}">Download Lapmiran</a></td>
+                            @endisset
+
+                            @empty($report->attachment)
+                                <td>Lampiran Tidak Tersedia</td>
+                            @endempty
                         </tr>
                         @empty
                             <tr>
