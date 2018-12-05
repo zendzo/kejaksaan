@@ -1,4 +1,4 @@
-<li class="treeview {{ active(['admin.pegawai.*','admin.pengaduan.*']) }}">
+<li class="treeview {{ active(['admin.pegawai.*','admin.pengaduan.*','search.*']) }}">
 <a href="#">
   <i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i>
     <span>MASTER DATA</span>
@@ -8,14 +8,17 @@
     <li class="{{ active('admin.pegawai.*') }}">
     	<a href="{{ route('admin.pegawai.index') }}"><i class="fa fa-user fa-fw"></i>Data (Pegawai)</a>
     </li>
-    <li class="treeview {{ active(['admin.pengaduan.*']) }}">
+    <li class="treeview {{ active(['admin.pengaduan.*','search.*']) }}">
 			<a href="#">
 				<i class="fa fa-book"></i>&nbsp;Data Pengaduan<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 			</a>
-		<ul class="treeview-menu {{ active(['admin.pengaduan.*']) }}">
+		<ul class="treeview-menu {{ active(['admin.pengaduan.*','search.*']) }}">
 			<li class="{{ active('admin.pengaduan.create') }}">
 				<a href="{{ route('admin.pengaduan.create') }}"><i class="fa  fa-clipboard"></i>Input Pengaduan</a>
 			</li>
+			<li class="{{ active('search.*') }}">
+					<a href="{{ route('search.index') }}"><i class="fa  fa-search"></i>Cari Pengaduan</a>
+				</li>
 			<li class="{{ active('admin.pengaduan.index') }}">
 				<a href="{{ route('admin.pengaduan.index') }}"><i class="fa fa-arrow-right"></i>Masuk</a>
 			</li>

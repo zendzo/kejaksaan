@@ -8,6 +8,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('cari-data','StringMatchingController@index')->middleware('auth')->name('search.index');
+
+Route::post('cari-data','StringMatchingController@search')->middleware('auth')->name('search.string');
+
 Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'admin'], function(){
 
 	Route::get('/',[

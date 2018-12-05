@@ -12,7 +12,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap 3.3.2 -->
     <link href="{{ asset("AdminLTE/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('AdminLTE/bootstrap/fonts/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
     {{-- <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" /> --}}
     <!-- Theme style -->
@@ -29,7 +29,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    @yield('cssPlugins')
+    @yield('css')
     <style>
       @media print {
       a[href]:after {
@@ -68,7 +68,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Footer -->
 
     </div><!-- ./wrapper -->
-
+  </body>
     <!-- REQUIRED JS SCRIPTS -->
 
     <!-- jQuery 2.1.3 -->
@@ -85,8 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Optionally, you can add Slimscroll and FastClick plugins. 
           Both of these plugins are recommended to enhance the 
           user experience -->
-    @yield('jsPlugins')
+    @yield('script')
     <!-- flash_message -->
     @include('layouts.flash.message')
-  </body>
 </html>
