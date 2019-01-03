@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\File;
 use Carbon\Carbon;
 
@@ -21,7 +22,7 @@ class PengaduanController extends Controller
     {
         $page_title = "Data Pengaduan Masuk";
 
-        $data = Pengaduan::with('comments')->get();
+        $data = Pengaduan::orderBy('id', 'DESC')->with('comments')->get();
 
         return view('pengaduan.index',compact(['data','page_title']));
     }
@@ -69,6 +70,29 @@ class PengaduanController extends Controller
         $input = $request->all();
 
         $pengaduan = new Pengaduan;
+
+        $validate = $request->validate([
+            'no_ktp' => 'required',
+            'name' => 'required',
+            'gender_id' => 'required',
+            'birth_date' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'title_pengaduan' => 'required',
+            'content_pengaduan' => 'required',
+            'status' => 'required',
+            'attachment' => 'required|max:50000|mimes:doc,docx,pdf'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                        // ->withErrors($validator)
+                        // ->withInput()
+                        ->with('message','Data Tidak Valid!')
+                        ->with('status','Input Gagal')
+                        ->with('type','error');
+        }
 
         if (!$request->has('attachment')) {
             $pengaduan->create($request->except('attachment'));
